@@ -1,0 +1,209 @@
+fileFormatVersion: 2
+guid: 24696daf788337742978c5f3e0dec1b9
+timeCreated: 1425708465
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Doodle_Man_Head_Open
+    21300002: Doodle_Man_Head_Smile
+    21300004: Doodle_Man_Head
+    21300006: Doodle_Man_Head1
+    21300008: Doodle_Man_Sprite_Sheet_3
+    21300010: Doodle_Man_Sprite_Sheet_4
+    21300012: Doodle_Man_Torso
+    21300014: Doodle_Man_Arm
+    21300016: Doodle_Man_Forearm
+    21300018: Doodle_Man_Leg
+    21300020: Doodle_Man_BottomLeg
+    21300022: Doodle_Man_Foot
+    21300024: Doodle_Man_BackArm
+    21300026: Doodle_Man_BackForearm
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Doodle_Man_Head_Open
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 626
+        width: 125
+        height: 125
+      alignment: 9
+      pivot: {x: .456319034, y: .11818701}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Doodle_Man_Head_Smile
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 627
+        width: 125
+        height: 125
+      alignment: 9
+      pivot: {x: .485457897, y: .123608395}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Doodle_Man_Head
+      rect:
+        serializedVersion: 2
+        x: 282
+        y: 626
+        width: 125
+        height: 125
+      alignment: 9
+      pivot: {x: .492729008, y: .123608887}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Doodle_Man_Head1
+      rect:
+        serializedVersion: 2
+        x: 407
+        y: 624
+        width: 125
+        height: 125
+      alignment: 9
+      pivot: {x: .485458255, y: .12917529}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Doodle_Man_Sprite_Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 526
+        y: 626
+        width: 125
+        height: 125
+      alignment: 9
+      pivot: {x: .500000477, y: .107362308}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Doodle_Man_Sprite_Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 653
+        y: 624
+        width: 125
+        height: 125
+      alignment: 9
+      pivot: {x: .51454246, y: .114633299}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Doodle_Man_Torso
+      rect:
+        serializedVersion: 2
+        x: 173
+        y: 428
+        width: 24
+        height: 141
+      alignment: 9
+      pivot: {x: .417373657, y: .0913071632}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Doodle_Man_Arm
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 495
+        width: 67
+        height: 75
+      alignment: 9
+      pivot: {x: .802183032, y: .872051597}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Doodle_Man_Forearm
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 379
+        width: 64
+        height: 93
+      alignment: 9
+      pivot: {x: .232296705, y: .97179848}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Doodle_Man_Leg
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 279
+        width: 61
+        height: 111
+      alignment: 9
+      pivot: {x: .53202492, y: .882396817}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Doodle_Man_BottomLeg
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 184
+        width: 71
+        height: 81
+      alignment: 9
+      pivot: {x: .742930889, y: .918009818}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Doodle_Man_Foot
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 131
+        width: 67
+        height: 28
+      alignment: 9
+      pivot: {x: .215125918, y: .467540741}
+      border: {x: 0, y: 1, z: 0, w: 0}
+    - name: Doodle_Man_BackArm
+      rect:
+        serializedVersion: 2
+        x: 365
+        y: 348
+        width: 42
+        height: 67
+      alignment: 9
+      pivot: {x: .262452632, y: .896522164}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Doodle_Man_BackForearm
+      rect:
+        serializedVersion: 2
+        x: 397
+        y: 318
+        width: 66
+        height: 30
+      alignment: 9
+      pivot: {x: .127391011, y: .833695471}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
