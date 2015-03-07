@@ -20,12 +20,13 @@ public class EventTrigger : MonoBehaviour {
 	private void cycleStates() {
 		
 		foreach (GameObject t in toggleObjects) {
-			t.SendMessageUpdwards("toggleState", SendMessageOptions.DontRequireReceiver);
+			t.SendMessageUpwards("ToggleState", SendMessageOptions.DontRequireReceiver);
 		}
 		
 		foreach (GameObject s in stateObjects) {
 			currState++;
-			s.SendMessageUpdwards("setState", currState, SendMessageOptions.DontRequireReceiver);
+
+			s.SendMessageUpwards("SetState", currState, SendMessageOptions.DontRequireReceiver);
 		}
 		
 	}

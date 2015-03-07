@@ -3,7 +3,7 @@ using System.Collections;
 
 public class ToggleObject : MonoBehaviour {
 
-	private boolean currState;
+	private bool currState;
 
 	// Use this for initialization
 	void Start () {
