@@ -1,9 +1,19 @@
 fileFormatVersion: 2
 guid: 6a386c47779de8142932f984ea8fb8fa
-timeCreated: 1425725682
+timeCreated: 1425755383
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: Doodle_Robot_Dino_Upper_Jaw
+    21300002: Doodle_Robot_Dino_Lower_Jaw
+    21300004: Doodle_Robot_Dino_Neck
+    21300006: Doodle_Robot_Dino_Arm
+    21300008: Doodle_Robot_Dino_Foot
+    21300010: Doodle_Robot_Dino_Tail
+    21300012: Doodle_Robot_Dino_Knee
+    21300014: Doodle_Robot_Dino_Lower_Leg
+    21300016: Doodle_Robot_Dino_Upper_Leg
+    21300018: Doodle_Robot_Dino_Body
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -30,14 +40,14 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     filterMode: -1
-    aniso: -1
+    aniso: 16
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
   lightmap: 0
   rGBM: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -48,7 +58,107 @@ TextureImporter:
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: Doodle_Robot_Dino_Upper_Jaw
+      rect:
+        serializedVersion: 2
+        x: 553
+        y: 629
+        width: 214
+        height: 144
+      alignment: 9
+      pivot: {x: .430936426, y: .241605118}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Doodle_Robot_Dino_Lower_Jaw
+      rect:
+        serializedVersion: 2
+        x: 610
+        y: 529
+        width: 175
+        height: 73
+      alignment: 9
+      pivot: {x: .244528815, y: .824227095}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Doodle_Robot_Dino_Neck
+      rect:
+        serializedVersion: 2
+        x: 464
+        y: 564
+        width: 99
+        height: 107
+      alignment: 9
+      pivot: {x: .420307815, y: .291086942}
+      border: {x: 0, y: 2, z: 0, w: 9}
+    - name: Doodle_Robot_Dino_Arm
+      rect:
+        serializedVersion: 2
+        x: 539
+        y: 150
+        width: 165
+        height: 116
+      alignment: 9
+      pivot: {x: .237015054, y: .783388615}
+      border: {x: 12, y: 0, z: 0, w: 0}
+    - name: Doodle_Robot_Dino_Foot
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 140
+        width: 131
+        height: 50
+      alignment: 9
+      pivot: {x: .329360604, y: .578895569}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Doodle_Robot_Dino_Tail
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 112
+        width: 135
+        height: 99
+      alignment: 9
+      pivot: {x: .939999998, y: .629999995}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Doodle_Robot_Dino_Knee
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 393
+        width: 63
+        height: 70
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Doodle_Robot_Dino_Lower_Leg
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 253
+        width: 113
+        height: 96
+      alignment: 9
+      pivot: {x: .837458789, y: .856124878}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Doodle_Robot_Dino_Upper_Leg
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 484
+        width: 174
+        height: 126
+      alignment: 9
+      pivot: {x: .333745062, y: .677410305}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Doodle_Robot_Dino_Body
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 301
+        width: 345
+        height: 190
+      alignment: 9
+      pivot: {x: .305619746, y: .299300998}
+      border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
   assetBundleName: 
