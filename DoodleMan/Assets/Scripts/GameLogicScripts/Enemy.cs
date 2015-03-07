@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
 	protected Animator animator;
 	private Component attackPoint;
 	private bool enemyInRange = false;
+	private int direction = 0;
 
 	// Use this for initialization
 	void Start ()
@@ -32,6 +33,8 @@ public class Enemy : MonoBehaviour
 			Patrol ();
 		}
 
+		Move ();
+
 	}
 
 	void ReceiveDamage (int damage)
@@ -53,6 +56,12 @@ public class Enemy : MonoBehaviour
 
 	void Patrol() {
 
+		if (this.gameObject.transform.position.x < xMin) {
+			direction = 1;
+		} else if (this.gameObject.transform.position.x > xMax) {
+			direction = -1;
+		}
+
 	}
 
 	void Follow() {
@@ -60,15 +69,9 @@ public class Enemy : MonoBehaviour
 	}
 
 	// Direction < 0 indicates left movement, direction > 0 indicates right movement
-	void Move (byte direction)
+	void Move ()
 	{
-
-		if (direction < 0) {
-			GetComponent<Rigidbody2D> ().velocity = new Vector2 (-0.2f * moveSpeed, GetComponent<Rigidbody2D> ().velocity.y);
-		} else {
-			GetComponent<Rigidbody2D> ().velocity = new Vector2 (0.2f * moveSpeed, GetComponent<Rigidbody2D> ().velocity.y);
-		}
-
+		GetComponent<Rigidbody2D> ().velocity = new Vector2 (0.2f * moveSpeed * direction, GetComponent<Rigidbody2D> ().velocity.y);
 	}
 
 }
