@@ -78,6 +78,9 @@ public class Player : MonoBehaviour
 			if (GetComponent<Rigidbody2D>().velocity.y == 0) 
 				GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, 5);
 		}
+		if (!(left || up || right)) {
+			GetComponent<Rigidbody2D>().velocity = new Vector2(0, GetComponent<Rigidbody2D>().velocity.y);
+		}
 
 	}
 	

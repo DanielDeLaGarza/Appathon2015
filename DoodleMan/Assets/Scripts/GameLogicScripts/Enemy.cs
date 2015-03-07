@@ -8,7 +8,6 @@ public class Enemy : MonoBehaviour
 	public float moveSpeed = 2f, applyDamageRadius = 1, detectionRange = 10;
 
 	protected Animator animator;
-	private Component attackPoint;
 	private bool inRange = false;
 	private int direction = 1;
 
@@ -16,7 +15,6 @@ public class Enemy : MonoBehaviour
 	void Start ()
 	{
 		animator = GetComponent<Animator> ();
-		attackPoint = transform.Find ("AttackPoint").GetComponent<Component> ();
 	}
 	
 	// Update is called once per frame
@@ -62,9 +60,6 @@ public class Enemy : MonoBehaviour
 
 	}
 
-	void Follow() {
-
-	}
 
 	// Direction < 0 indicates left movement, direction > 0 indicates right movement
 	void Move ()
