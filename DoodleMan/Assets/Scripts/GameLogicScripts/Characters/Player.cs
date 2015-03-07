@@ -48,7 +48,7 @@ public class Player : MonoBehaviour
 	//Moves character in the right directon
 	void Move ()
 	{
-		moveSpeed = Input.acceleration.x*.2f;
+		moveSpeed = Input.acceleration.x*10f;
 		Vector3 scale = transform.localScale;
 		if (moveSpeed < 0f) {
 			scale.x = Mathf.Abs (scale.x) * -1;
@@ -57,13 +57,14 @@ public class Player : MonoBehaviour
 			scale.x = Mathf.Abs(scale.x);
 		}
 		transform.localScale = scale;
-		if (moveSpeed > -2f && moveSpeed < 2f) {
+		if (moveSpeed > -1f && moveSpeed < 1f) {
 			animator.SetBool ("isRunning", false);
 		} 
 		else {
 			animator.SetBool ("isRunning", true);
+			GetComponent<Rigidbody2D>().velocity = new Vector2(moveSpeed, GetComponent<Rigidbody2D>().velocity.y);
 		}
-		GetComponent<Rigidbody2D>().velocity = new Vector2(moveSpeed, GetComponent<Rigidbody2D>().velocity.y);
+
 
 		
 
