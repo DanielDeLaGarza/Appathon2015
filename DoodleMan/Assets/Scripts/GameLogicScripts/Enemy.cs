@@ -4,8 +4,9 @@ using System.Collections;
 public class Enemy : MonoBehaviour
 {
 
-	public int health = 1, attackDamage = 1;
+	public int health = 1, attackDamage = 1, xMin = 0, xMax = 0;
 	public float moveSpeed = 2f, applyDamageRadius = 1, detectionRange = 4;
+
 	protected Animator animator;
 	private Component attackPoint;
 	private bool enemyInRange = false;
@@ -20,23 +21,16 @@ public class Enemy : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
+
 		if (health <= 0) {
 			Die ();
 		}
-	}
 
-	Collider2D ApplyDamage ()
-	{
-
-		// TODO: Change this value to the player's layer
-		int layer_bitmask = 1000;
-
-		Vector2 location = new Vector2 (this.attackPoint.transform.position.x, this.attackPoint.transform.position.y);
-
-		Collider2D[] targets = Physics2D.OverlapCircleAll (location, applyDamageRadius, layer_bitmask);
-
-		// There will only ever be one target: the player
-		return targets [0];
+		if (enemyInRange) {
+			Follow ();
+		} else {
+			Patrol ();
+		}
 
 	}
 
@@ -49,9 +43,20 @@ public class Enemy : MonoBehaviour
 	{
 		this.gameObject.SetActive (false);
 		GameObject dieEffect = (GameObject)Instantiate (Resources.Load ("Effects/Die"));
-		// TODO: Death animation
+		dieEffect.transform.parent = this.gameObject.transform;
+		dieEffect.transform.localPosition = new Vector3 (0, 1, 0);
+		dieEffect.transform.localScale = new Vector3 (1, 1, 1);
+		dieEffect.transform.parent = null;
 		Destroy (this.gameObject);
 		Destroy (dieEffect, 2);
+	}
+
+	void Patrol() {
+
+	}
+
+	void Follow() {
+
 	}
 
 	// Direction < 0 indicates left movement, direction > 0 indicates right movement
