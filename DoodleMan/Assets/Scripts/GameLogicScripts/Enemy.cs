@@ -5,12 +5,12 @@ public class Enemy : MonoBehaviour
 {
 
 	public int health = 1, attackDamage = 1, xMin = 0, xMax = 0;
-	public float moveSpeed = 2f, applyDamageRadius = 1, detectionRange = 4;
+	public float moveSpeed = 2f, applyDamageRadius = 1, detectionRange = 10;
 
 	protected Animator animator;
 	private Component attackPoint;
-	private bool enemyInRange = false;
-	private int direction = 0;
+	private bool inRange = false;
+	private int direction = 1;
 
 	// Use this for initialization
 	void Start ()
@@ -27,9 +27,7 @@ public class Enemy : MonoBehaviour
 			Die ();
 		}
 
-		if (enemyInRange) {
-			Follow ();
-		} else {
+		if (!inRange) {
 			Patrol ();
 		}
 
@@ -71,7 +69,7 @@ public class Enemy : MonoBehaviour
 	// Direction < 0 indicates left movement, direction > 0 indicates right movement
 	void Move ()
 	{
-		GetComponent<Rigidbody2D> ().velocity = new Vector2 (0.2f * moveSpeed * direction, GetComponent<Rigidbody2D> ().velocity.y);
+		GetComponent<Rigidbody2D> ().velocity = new Vector2 (4f * moveSpeed * direction, GetComponent<Rigidbody2D> ().velocity.y);
 	}
 
 }
