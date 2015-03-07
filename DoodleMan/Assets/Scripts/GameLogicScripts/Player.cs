@@ -9,7 +9,9 @@ public class Player : MonoBehaviour
 	public float moveSpeed = 2f;
 
 	protected Animator animator;
-	private bool enemyInRange = false;			
+	private bool enemyInRange = false;
+
+	private bool left = false, right = false, up = false;
 
 	//Sets the right orintation of character walk left for enemies right for allies
 	void Start ()
@@ -19,7 +21,7 @@ public class Player : MonoBehaviour
 	
 	void Update ()
 	{
-		move ();
+		Move ();
 	}
 
 	//Subtracts from total health
@@ -48,12 +50,33 @@ public class Player : MonoBehaviour
 	void Move ()
 	{
 
-		if (Input.GetKeyDown (KeyCode.LeftArrow)) {
-			GetComponent<Rigidbody2D> ().velocity = new Vector2 (-0.2f * moveSpeed, GetComponent<Rigidbody2D> ().velocity.y);
+		if (Input.GetKeyDown(KeyCode.LeftArrow)) {
+			left = true;
 		}
-
-		if (Input.GetKeyDown (KeyCode.RightArrow)) {
-			GetComponent<Rigidbody2D> ().velocity = new Vector2 (0.2f * moveSpeed, GetComponent<Rigidbody2D> ().velocity.y);
+		if (Input.GetKeyUp(KeyCode.LeftArrow)) {
+			left = false;
+		}
+		if (Input.GetKeyDown(KeyCode.RightArrow)) {
+			right = true;
+		}
+		if (Input.GetKeyUp(KeyCode.RightArrow)) {
+			right = false;
+		}
+		if (Input.GetKeyDown(KeyCode.UpArrow)) {
+			up = true;
+		}
+		if (Input.GetKeyUp(KeyCode.UpArrow)) {
+			up = false;
+		}
+		if (left){
+			GetComponent<Rigidbody2D>().velocity = new Vector2(-5.3f, GetComponent<Rigidbody2D>().velocity.y);
+		}
+		if (right){
+			GetComponent<Rigidbody2D>().velocity = new Vector2(5.3f, GetComponent<Rigidbody2D>().velocity.y);
+		}
+		if (up){
+			if (GetComponent<Rigidbody2D>().velocity.y == 0) 
+				GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, 5);
 		}
 
 	}
