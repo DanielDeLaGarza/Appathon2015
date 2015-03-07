@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 24696daf788337742978c5f3e0dec1b9
-timeCreated: 1425708465
+timeCreated: 1425713544
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -8,8 +8,8 @@ TextureImporter:
     21300002: Doodle_Man_Head_Smile
     21300004: Doodle_Man_Head
     21300006: Doodle_Man_Head1
-    21300008: Doodle_Man_Sprite_Sheet_3
-    21300010: Doodle_Man_Sprite_Sheet_4
+    21300008: Doodle_Man_Head2
+    21300010: Doodle_Man_Head3
     21300012: Doodle_Man_Torso
     21300014: Doodle_Man_Arm
     21300016: Doodle_Man_Forearm
@@ -103,7 +103,7 @@ TextureImporter:
       alignment: 9
       pivot: {x: .485458255, y: .12917529}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Doodle_Man_Sprite_Sheet_3
+    - name: Doodle_Man_Head2
       rect:
         serializedVersion: 2
         x: 526
@@ -113,7 +113,7 @@ TextureImporter:
       alignment: 9
       pivot: {x: .500000477, y: .107362308}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Doodle_Man_Sprite_Sheet_4
+    - name: Doodle_Man_Head3
       rect:
         serializedVersion: 2
         x: 653
