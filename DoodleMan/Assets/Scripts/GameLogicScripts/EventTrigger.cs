@@ -5,7 +5,6 @@ using System.Collections;
 public class EventTrigger : MonoBehaviour {
 	
 	private int currState;
-	public int maxStates;
 	public GameObject[] toggleObjects, stateObjects;
 	
 	// Use this for initialization
@@ -15,9 +14,7 @@ public class EventTrigger : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
 		// TODO: Animation on lever pull or button press
-		
 	}
 	
 	private void cycleStates() {
