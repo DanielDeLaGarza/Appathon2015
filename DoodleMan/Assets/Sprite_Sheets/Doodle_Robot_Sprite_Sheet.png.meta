@@ -1,9 +1,15 @@
 fileFormatVersion: 2
 guid: ae9818c71630edb4bbae9dbb61e0c02c
-timeCreated: 1425734791
+timeCreated: 1425752495
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: Doodle_Robot_Sprite_Sheet_0
+    21300002: Doodle_Robot_Sprite_Sheet_1
+    21300004: Doodle_Robot_Sprite_Sheet_2
+    21300006: Doodle_Robot_Sprite_Sheet_3
+    21300008: Doodle_Robot_Sprite_Sheet_4
+    21300010: Doodle_Robot_Sprite_Sheet_5
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -30,14 +36,14 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     filterMode: -1
-    aniso: -1
+    aniso: 16
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
   lightmap: 0
   rGBM: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -48,7 +54,67 @@ TextureImporter:
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: Doodle_Robot_Sprite_Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 531
+        width: 263
+        height: 258
+      alignment: 9
+      pivot: {x: .53499794, y: .117754556}
+      border: {x: 10, y: 22, z: 25, w: 14}
+    - name: Doodle_Robot_Sprite_Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 589
+        y: 471
+        width: 133
+        height: 151
+      alignment: 9
+      pivot: {x: .511790335, y: .416922271}
+      border: {x: 11, y: 0, z: 0, w: 22}
+    - name: Doodle_Robot_Sprite_Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 630
+        y: 50
+        width: 130
+        height: 128
+      alignment: 9
+      pivot: {x: .469999999, y: .454400003}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Doodle_Robot_Sprite_Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 77
+        width: 124
+        height: 125
+      alignment: 9
+      pivot: {x: .478356689, y: .453481317}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Doodle_Robot_Sprite_Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 293
+        y: 314
+        width: 138
+        height: 222
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Doodle_Robot_Sprite_Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 98
+        width: 164
+        height: 106
+      alignment: 9
+      pivot: {x: .217774928, y: .471828967}
+      border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
   assetBundleName: 
