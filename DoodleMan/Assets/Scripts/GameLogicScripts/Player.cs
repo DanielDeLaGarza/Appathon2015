@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
 	
 	void Update ()
 	{
-
+		move ();
 	}
 
 	//Subtracts from total health
@@ -47,11 +47,15 @@ public class Player : MonoBehaviour
 	//Moves character in the right directon
 	void Move ()
 	{
+
 		if (Input.GetKeyDown (KeyCode.LeftArrow)) {
 			GetComponent<Rigidbody2D> ().velocity = new Vector2 (-0.2f * moveSpeed, GetComponent<Rigidbody2D> ().velocity.y);
-		} else if (Input.GetKeyDown (KeyCode.RightArrow)) {
+		}
+
+		if (Input.GetKeyDown (KeyCode.RightArrow)) {
 			GetComponent<Rigidbody2D> ().velocity = new Vector2 (0.2f * moveSpeed, GetComponent<Rigidbody2D> ().velocity.y);
 		}
+
 	}
 	
 }
