@@ -7,8 +7,8 @@ public class Player : MonoBehaviour
 	// Basic Character Attributes
 	public int health = 1;
 	public float moveSpeed = 2f;
-
 	protected Animator animator;
+	private bool canJump = true;
 
 	private bool left = false, right = false, up = false;
 
@@ -87,13 +87,20 @@ public class Player : MonoBehaviour
 		if (!(left || up || right)) {
 			GetComponent<Rigidbody2D>().velocity = new Vector2(0, GetComponent<Rigidbody2D>().velocity.y);
 		}
+		if (GetComponent<Rigidbody2D>().velocity.y < 0) {
+			animator.SetBool ("isFalling", true);
+		} 
+		else {
+			animator.SetBool ("isFalling", false);
+		}
+		if (GetComponent<Rigidbody2D>().velocity.y > 0) {
+			animator.SetBool ("isJumping", true);
+		} 
+		else {
+			if(!up) animator.SetBool ("isJumping", false);
+		}
 
 	}
-
-	void notFalling(){
-		animator.SetBool("isJumping", false);
-	}
-
 	void jump(){
 		GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, 8);
 	}
