@@ -6,7 +6,9 @@ public class Player : MonoBehaviour
 
 	// Basic Character Attributes
 	public int health = 1;
-	public float moveSpeed = 2f;
+	float moveSpeed = 2f;
+	public float delay = 1f;
+	public int jumpVelocity = 4;
 	protected Animator animator;
 	private bool canJump = true;
 	public float nextUsage = 0f;
@@ -109,8 +111,8 @@ public class Player : MonoBehaviour
 	}
 	public void jump(){
 		if (nextUsage <= 0) {
-			nextUsage = 3f;
-			GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, 8);
+			nextUsage = delay;
+			GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, jumpVelocity);
 		}
 
 	}
