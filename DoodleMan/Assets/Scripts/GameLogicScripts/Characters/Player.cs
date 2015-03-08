@@ -49,10 +49,16 @@ public class Player : MonoBehaviour
 		transform.localScale = scale;
 		if (moveSpeed > -1f && moveSpeed < 1f) {
 			animator.SetBool ("isRunning", false);
+			animator.SetBool ("isWalking", false);
+		} else if (Mathf.Abs (moveSpeed) > 3.5) {
+			animator.SetBool ("isRunning", true);
+			animator.SetBool ("isWalking", false);
+			GetComponent<Rigidbody2D> ().velocity = new Vector2 (moveSpeed, GetComponent<Rigidbody2D> ().velocity.y);
 		} 
 		else {
-			animator.SetBool ("isRunning", true);
-			GetComponent<Rigidbody2D>().velocity = new Vector2(moveSpeed, GetComponent<Rigidbody2D>().velocity.y);
+			animator.SetBool ("isRunning", false);
+			animator.SetBool ("isWalking", true);
+			GetComponent<Rigidbody2D> ().velocity = new Vector2 (moveSpeed, GetComponent<Rigidbody2D> ().velocity.y);
 		}
 
 		/*if (Input.GetKeyDown(KeyCode.LeftArrow)) {
