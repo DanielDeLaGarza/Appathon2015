@@ -54,9 +54,6 @@ public class Player : MonoBehaviour
 			GetComponent<Rigidbody2D>().velocity = new Vector2(moveSpeed, GetComponent<Rigidbody2D>().velocity.y);
 		}
 
-
-		
-
 		/*if (Input.GetKeyDown(KeyCode.LeftArrow)) {
 			left = true;
 			Vector3 inverseScale = transform.localScale;
