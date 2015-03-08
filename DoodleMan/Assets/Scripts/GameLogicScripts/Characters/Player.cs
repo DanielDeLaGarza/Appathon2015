@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
 	// Basic Character Attributes
 	public int health = 1;
 	public float jumPdelay = 1f;
-	public float jumpVelocity = 5f;
+	public float jumpVelocity = 7f;
 	protected Animator animator;
 	private float nextUsage = 0f;
 	private float moveSpeed = 2f;

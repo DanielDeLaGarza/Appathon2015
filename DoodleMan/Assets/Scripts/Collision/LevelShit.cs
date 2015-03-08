@@ -7,12 +7,9 @@ public class LevelShit : MonoBehaviour {
 	
 	void OnTriggerEnter2D (Collider2D other)
 	{
-		if (other.name == "DoodleMan") {
-<<<<<<< HEAD
+		if (other.name == "DoodleMan"){
 			other.SendMessage ("Die", SendMessageOptions.DontRequireReceiver);
-=======
 			Destroy(other.gameObject);
->>>>>>> 403ffee5672ace2c21e7180fb7eab61c83cdec81
 			Application.LoadLevel(level);
 		}
 	}
