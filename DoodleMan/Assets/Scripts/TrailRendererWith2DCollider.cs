@@ -81,6 +81,9 @@ public class TrailRendererWith2DCollider : MonoBehaviour {
 		trail = new GameObject("Trail", new[] { typeof(MeshRenderer), typeof(MeshFilter), typeof(PolygonCollider2D) } );
 		mesh = trail.GetComponent<MeshFilter>().mesh = new Mesh();
 		trail.GetComponent<Renderer>().material = trailMaterial;
+		Rigidbody2D gameObjectsRigidBody = trail.AddComponent<Rigidbody2D>();
+		gameObjectsRigidBody.gravityScale = 0f;
+		gameObjectsRigidBody.mass = .5f;
 		
 		//get and set the polygon collider on this trail.
 		collider = trail.GetComponent<PolygonCollider2D>();
@@ -112,6 +115,9 @@ public class TrailRendererWith2DCollider : MonoBehaviour {
 		}
 		if (Input.GetMouseButtonUp(0)) {
 			if(trail.GetComponent<PolygonCollider2D>().points.Length > 6){
+				Rigidbody2D rBody = trail.GetComponent<Rigidbody2D>();
+				rBody.mass = rBody.mass*trail.GetComponent<PolygonCollider2D>().points.Length;
+				rBody.gravityScale = 1f;
 				lines.Push(trail.gameObject);
 			}
 			else{
