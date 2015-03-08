@@ -2,11 +2,13 @@
 using System.Collections;
 
 public class LevelShit : MonoBehaviour {
+
+	public string level = "";
 	
 	void OnTriggerEnter2D (Collider2D other)
 	{
 		if (other.name == "DoodleMan") {
-			Application.LoadLevel ("level2");
+			Application.LoadLevel (level);
 		}
 	}
 
