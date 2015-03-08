@@ -7,11 +7,11 @@ public class FaceChange : MonoBehaviour {
 	public Sprite[] headSprites;
 
 
-	void setRandomFace(){
+	public void setRandomFace(){
 		int FaceNum = Random.Range (0,headSprites.Length);
 		face.GetComponent<SpriteRenderer>().sprite = headSprites[FaceNum];
 	}
-	void setDefaultFace(){
+	public void setDefaultFace(){
 		face.GetComponent<SpriteRenderer>().sprite = headSprites[0];
 	}
 }
