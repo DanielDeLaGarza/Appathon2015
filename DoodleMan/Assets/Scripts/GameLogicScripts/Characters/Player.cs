@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
 	void Update ()
 	{
 		if(nextUsage > 0) nextUsage = nextUsage - Time.deltaTime;
-		moveKeys();
+		moveAcelerometer();
 	}
 
 	void Die ()

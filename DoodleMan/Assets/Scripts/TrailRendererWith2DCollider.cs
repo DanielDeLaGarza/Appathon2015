@@ -111,7 +111,7 @@ public class TrailRendererWith2DCollider : MonoBehaviour {
 	private void Update() {
 		if (Input.GetMouseButton (0)) {
 			Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-			GetComponent<Transform>().position = new Vector3 (mousePos.x, mousePos.y, GetComponent<Transform>().position.z);			 
+			GetComponent<Transform>().position = new Vector3 (mousePos.x, mousePos.y, GetComponent<Transform>().position.z);	 
 		}
 		if (Input.GetMouseButtonUp(0)) {
 			if(trail.GetComponent<PolygonCollider2D>().points.Length > 6){
