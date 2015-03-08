@@ -62,7 +62,7 @@ public class Enemy : MonoBehaviour
 	// Direction < 0 indicates left movement, direction > 0 indicates right movement
 	void Move ()
 	{
-		GetComponent<Rigidbody2D> ().velocity = new Vector2 (4f * moveSpeed * direction, GetComponent<Rigidbody2D> ().velocity.y);
+		GetComponent<Rigidbody2D> ().velocity = new Vector2 (moveSpeed * direction, GetComponent<Rigidbody2D> ().velocity.y);
 	}
 
 }
