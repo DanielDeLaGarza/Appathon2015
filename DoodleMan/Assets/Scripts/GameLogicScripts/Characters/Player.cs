@@ -32,6 +32,7 @@ public class Player : MonoBehaviour
 	{
 		this.gameObject.SetActive (false);
 		Destroy (this.gameObject);
+		Application.LoadLevel (0);
 	}
 
 	//Moves character in the right directon
