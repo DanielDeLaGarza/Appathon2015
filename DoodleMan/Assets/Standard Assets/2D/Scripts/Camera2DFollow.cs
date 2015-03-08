@@ -65,7 +65,7 @@ namespace UnityStandardAssets._2D
 			if (y < (-1 * (bgHeight / 2) - (Camera.main.orthographicSize * 2f))) {
 				y = -1*(bgHeight / 2.0f + Camera.main.orthographicSize * 2f);
 			} else if (y > (bgHeight / 2) + (Camera.main.orthographicSize * 2f)) {
-				y = ((bgHeight / 2) + (Camera.main.orthographicSize * 2f));
+				y = (bgHeight / 2) + (Camera.main.orthographicSize * 2f);
 			}
 
 			Vector3 myPos = new Vector3(x, y, -1);
