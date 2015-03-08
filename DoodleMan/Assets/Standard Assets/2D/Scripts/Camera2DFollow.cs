@@ -70,7 +70,7 @@ namespace UnityStandardAssets._2D
 
 			Vector3 myPos = new Vector3(x, y, -1);
 
-			transform.position = myPos;
+			transform.position = newPos;
 			m_LastTargetPosition = target.position;
 
 

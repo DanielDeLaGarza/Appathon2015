@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
 	public float moveSpeed = 2f;
 	protected Animator animator;
 	private bool canJump = true;
-	private float nextUsage = 0f;
+	public float nextUsage = 0f;
 
 	private bool left = false, right = false, up = false;
 
@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
 	
 	void Update ()
 	{
-		nextUsage = nextUsage - Time.deltaTime;
+		if(nextUsage > 0) nextUsage = nextUsage - Time.deltaTime;
 		Move ();
 	}
 
@@ -52,10 +52,10 @@ public class Player : MonoBehaviour
 	{
 		moveSpeed = Input.acceleration.x*10f;
 		Vector3 scale = transform.localScale;
-		if (moveSpeed < 0f && moveSpeed > .5f) {
+		if (moveSpeed < -.6f) {
 			scale.x = Mathf.Abs (scale.x) * -1;
 		}
-		else if (moveSpeed > 0f && moveSpeed < .5f) {
+		else if (moveSpeed > .6f) {
 			scale.x = Mathf.Abs(scale.x);
 		}
 		transform.localScale = scale;
