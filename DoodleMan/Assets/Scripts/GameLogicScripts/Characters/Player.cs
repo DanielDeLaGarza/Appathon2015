@@ -50,7 +50,7 @@ public class Player : MonoBehaviour
 	//Moves character in the right directon
 	void Move ()
 	{
-		/*moveSpeed = Input.acceleration.x*10f;
+		moveSpeed = Input.acceleration.x*10f;
 		Vector3 scale = transform.localScale;
 		if (moveSpeed < 0f && moveSpeed > .5f) {
 			scale.x = Mathf.Abs (scale.x) * -1;
@@ -65,12 +65,12 @@ public class Player : MonoBehaviour
 		else {
 			animator.SetBool ("isRunning", true);
 			GetComponent<Rigidbody2D>().velocity = new Vector2(moveSpeed, GetComponent<Rigidbody2D>().velocity.y);
-		}*/
+		}
 
 
 		
 
-		if (Input.GetKeyDown(KeyCode.LeftArrow)) {
+		/*if (Input.GetKeyDown(KeyCode.LeftArrow)) {
 			left = true;
 			Vector3 inverseScale = transform.localScale;
 			if(inverseScale.x > 0)inverseScale.x *= -1;
@@ -119,7 +119,7 @@ public class Player : MonoBehaviour
 		} 
 		else {
 			if(!up) animator.SetBool ("isJumping", false);
-		}
+		}*/
 
 	}
 	public void jump(){
