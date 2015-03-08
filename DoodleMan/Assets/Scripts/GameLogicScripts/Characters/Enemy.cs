@@ -25,10 +25,15 @@ public class Enemy : MonoBehaviour
 			Die ();
 		}
 
-		if (!inRange) {
-			Patrol ();
+		Vector3 scale = transform.localScale;
+		if (direction == 1) {
+			scale.x = Mathf.Abs(scale.x);
+		} else {
+			scale.x = Mathf.Abs(scale.x) * -1;
 		}
+		transform.localScale = scale;
 
+		Patrol ();
 		Move ();
 
 	}
@@ -41,13 +46,7 @@ public class Enemy : MonoBehaviour
 	void Die ()
 	{
 		this.gameObject.SetActive (false);
-		GameObject dieEffect = (GameObject)Instantiate (Resources.Load ("Effects/Die"));
-		dieEffect.transform.parent = this.gameObject.transform;
-		dieEffect.transform.localPosition = new Vector3 (0, 1, 0);
-		dieEffect.transform.localScale = new Vector3 (1, 1, 1);
-		dieEffect.transform.parent = null;
 		Destroy (this.gameObject);
-		Destroy (dieEffect, 2);
 	}
 
 	void Patrol() {
@@ -59,7 +58,6 @@ public class Enemy : MonoBehaviour
 		}
 
 	}
-
 
 	// Direction < 0 indicates left movement, direction > 0 indicates right movement
 	void Move ()

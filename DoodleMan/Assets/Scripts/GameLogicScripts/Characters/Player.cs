@@ -13,38 +13,23 @@ public class Player : MonoBehaviour
 
 	private bool left = false, right = false, up = false;
 
-	//Sets the right orintation of character walk left for enemies right for allies
-	void Awake ()
+	// Use this for initialization
+	void Start ()
 	{
+		DontDestroyOnLoad(transform.gameObject);
 		animator = GetComponent<Animator> ();
 	}
-	
+
 	void Update ()
 	{
 		nextUsage = nextUsage - Time.deltaTime;
 		Move ();
 	}
 
-	//Subtracts from total health
-	void ReceiveDamage (int damage)
-	{
-		health -= damage;
-
-	}
-
-	//kills characters by playing death animationa nd destroying object
 	void Die ()
 	{
-
 		this.gameObject.SetActive (false);
-		GameObject dieEffect = (GameObject)Instantiate (Resources.Load ("Effects/Die"));
-		dieEffect.transform.parent = this.gameObject.transform;
-		dieEffect.transform.localPosition = new Vector3 (0, 1, 0);
-		dieEffect.transform.localScale = new Vector3 (1, 1, 1);
-		dieEffect.transform.parent = null;
 		Destroy (this.gameObject);
-		Destroy (dieEffect, 2);
-
 	}
 
 	//Moves character in the right directon
