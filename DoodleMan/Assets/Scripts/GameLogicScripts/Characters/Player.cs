@@ -6,12 +6,11 @@ public class Player : MonoBehaviour
 
 	// Basic Character Attributes
 	public int health = 1;
-	float moveSpeed = 2f;
-	public float delay = 1f;
-	public int jumpVelocity = 4;
+	public float jumPdelay = 1f;
+	public float jumpVelocity = 5f;
 	protected Animator animator;
-	private bool canJump = true;
-	public float nextUsage = 0f;
+	private float nextUsage = 0f;
+	private float moveSpeed = 2f;
 
 	private bool left = false, right = false, up = false;
 
@@ -25,7 +24,7 @@ public class Player : MonoBehaviour
 	void Update ()
 	{
 		if(nextUsage > 0) nextUsage = nextUsage - Time.deltaTime;
-		Move ();
+		moveKeys();
 	}
 
 	void Die ()
@@ -36,15 +35,14 @@ public class Player : MonoBehaviour
 	}
 
 	//Moves character in the right directon
-	void Move ()
-	{
-		moveSpeed = Input.acceleration.x*10f;
+	void moveAcelerometer(){
+
+		moveSpeed = Input.acceleration.x * 10f;
 		Vector3 scale = transform.localScale;
 		if (moveSpeed < -.6f) {
 			scale.x = Mathf.Abs (scale.x) * -1;
-		}
-		else if (moveSpeed > .6f) {
-			scale.x = Mathf.Abs(scale.x);
+		} else if (moveSpeed > .6f) {
+			scale.x = Mathf.Abs (scale.x);
 		}
 		transform.localScale = scale;
 		if (moveSpeed > -1f && moveSpeed < 1f) {
@@ -54,14 +52,17 @@ public class Player : MonoBehaviour
 			animator.SetBool ("isRunning", true);
 			animator.SetBool ("isWalking", false);
 			GetComponent<Rigidbody2D> ().velocity = new Vector2 (moveSpeed, GetComponent<Rigidbody2D> ().velocity.y);
-		} 
-		else {
+		} else {
 			animator.SetBool ("isRunning", false);
 			animator.SetBool ("isWalking", true);
 			GetComponent<Rigidbody2D> ().velocity = new Vector2 (moveSpeed, GetComponent<Rigidbody2D> ().velocity.y);
 		}
+	}
 
-		/*if (Input.GetKeyDown(KeyCode.LeftArrow)) {
+	//////////////////////////////////////////////////////
+	private void moveKeys(){
+		animator.SetBool ("isWalking", false);
+		if (Input.GetKeyDown(KeyCode.LeftArrow)) {
 			left = true;
 			Vector3 inverseScale = transform.localScale;
 			if(inverseScale.x > 0)inverseScale.x *= -1;
@@ -72,53 +73,33 @@ public class Player : MonoBehaviour
 			left = false;
 			animator.SetBool("isRunning", false);
 		}
+		
 		if (Input.GetKeyDown(KeyCode.RightArrow)) {
 			right = true;
-			Vector3 scale = transform.localScale;
-			if(scale.x < 0)scale.x *= -1;
-			transform.localScale = scale;
+			Vector3 scaleNormal = transform.localScale;
+			if(scaleNormal.x < 0)scaleNormal.x *= -1;
+			transform.localScale = scaleNormal;
 			animator.SetBool("isRunning", true);
 		}
 		if (Input.GetKeyUp(KeyCode.RightArrow)) {
 			right = false;
 			animator.SetBool("isRunning", false);
 		}
-		if (Input.GetKeyDown(KeyCode.UpArrow)) {
-			//animator.SetBool("isJumping", true);
-			up = true;
-		}
-		if (Input.GetKeyUp(KeyCode.UpArrow)) {
-			up = false;
-		}
 		if (left){
-			GetComponent<Rigidbody2D>().velocity = new Vector2(-5.3f, GetComponent<Rigidbody2D>().velocity.y);
+			GetComponent<Rigidbody2D>().velocity = new Vector2(-2f, GetComponent<Rigidbody2D>().velocity.y);
 		}
 		if (right){
-			GetComponent<Rigidbody2D>().velocity = new Vector2(5.3f, GetComponent<Rigidbody2D>().velocity.y);
+			GetComponent<Rigidbody2D>().velocity = new Vector2(2f, GetComponent<Rigidbody2D>().velocity.y);
 		}
-		if (!(left || up || right)) {
+		if (!(left || right)) {
 			GetComponent<Rigidbody2D>().velocity = new Vector2(0, GetComponent<Rigidbody2D>().velocity.y);
 		}
-		if (GetComponent<Rigidbody2D>().velocity.y < 0) {
-			animator.SetBool ("isFalling", true);
-		} 
-		else {
-			animator.SetBool ("isFalling", false);
-		}
-		if (GetComponent<Rigidbody2D>().velocity.y > 0) {
-			animator.SetBool ("isJumping", true);
-		} 
-		else {
-			if(!up) animator.SetBool ("isJumping", false);
-		}*/
-
 	}
 	public void jump(){
 		if (nextUsage <= 0) {
-			nextUsage = delay;
+			nextUsage = jumPdelay;
 			GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, jumpVelocity);
 		}
 
 	}
-	
 }
