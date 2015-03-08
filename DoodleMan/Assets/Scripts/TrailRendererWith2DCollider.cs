@@ -28,7 +28,8 @@ public class TrailRendererWith2DCollider : MonoBehaviour {
     private LinkedList<Vector3> centerPositions;    //the previous positions of the object this script is attached to
     private LinkedList<Vertex> leftVertices;        //the left vertices derived from the center positions
     private LinkedList<Vertex> rightVertices;       //the right vertices derived from the center positions
-	private Stack<Transform> lines;
+	public Stack<GameObject> lines;
+	private GameObject trail;
  
     //************
     //
@@ -67,32 +68,16 @@ public class TrailRendererWith2DCollider : MonoBehaviour {
     //************
  
     private void Awake() {
-		lines = new Stack<Transform> ();
+		lines = new Stack<GameObject>();
 		//create an object and mesh for the trail
-		GameObject trail = new GameObject("Trail", new[] { typeof(MeshRenderer), typeof(MeshFilter), typeof(PolygonCollider2D) } );
-		mesh = trail.GetComponent<MeshFilter>().mesh = new Mesh();
-		trail.GetComponent<Renderer>().material = trailMaterial;
-		
-		//get and set the polygon collider on this trail.
-		collider = trail.GetComponent<PolygonCollider2D>();
-		collider.isTrigger = colliderIsTrigger;
-		collider.SetPath(0, null);
-		
-		//get the transform of the object this script is attatched to
-		trans = base.transform;
-		
-		//set the first center position as the current position
-		centerPositions = new LinkedList<Vector3>();
-		centerPositions.AddFirst(trans.position);
-		
-		leftVertices = new LinkedList<Vertex>();
-		rightVertices = new LinkedList<Vertex>();
+		makeNewTrail();
+
 		
 	}
 	
 	private void makeNewTrail(){
 		//create an object and mesh for the trail
-		GameObject trail = new GameObject("Trail", new[] { typeof(MeshRenderer), typeof(MeshFilter), typeof(PolygonCollider2D) } );
+		trail = new GameObject("Trail", new[] { typeof(MeshRenderer), typeof(MeshFilter), typeof(PolygonCollider2D) } );
 		mesh = trail.GetComponent<MeshFilter>().mesh = new Mesh();
 		trail.GetComponent<Renderer>().material = trailMaterial;
 		
@@ -110,6 +95,13 @@ public class TrailRendererWith2DCollider : MonoBehaviour {
 		
 		leftVertices = new LinkedList<Vertex>();
 		rightVertices = new LinkedList<Vertex>();
+	}
+
+	public void deleteLine(){
+		if (lines.Count > 0) {
+			GameObject toBeDeleted = lines.Pop ();
+			Destroy (toBeDeleted, 0f);
+		}
 	}
 	
 	private void Update() {
@@ -118,6 +110,7 @@ public class TrailRendererWith2DCollider : MonoBehaviour {
 			GetComponent<Transform>().position = new Vector3 (mousePos.x, mousePos.y, GetComponent<Transform>().position.z);			 
 		}
 		if (Input.GetMouseButtonUp(0)) {
+			lines.Push(trail.gameObject);
 			makeNewTrail();
 		}
         if (!pausing) {
