@@ -10,8 +10,7 @@ namespace UnityStandardAssets._2D
         public float lookAheadFactor = 3;
         public float lookAheadReturnSpeed = 0.5f;
         public float lookAheadMoveThreshold = 0.1f;
-
-		public GameObject background;
+		
 		public float bgWidth, bgHeight;
 
         private float m_OffsetZ;
@@ -26,9 +25,6 @@ namespace UnityStandardAssets._2D
             m_LastTargetPosition = target.position;
             m_OffsetZ = (transform.position - target.position).z;
             transform.parent = null;
-
-			bgWidth = background.transform.localScale.x / background.GetComponent<SpriteRenderer>().sprite.bounds.size.x;
-			bgHeight = background.transform.localScale.y / background.GetComponent<SpriteRenderer>().sprite.bounds.size.y;
 
         }
 
