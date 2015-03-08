@@ -28,6 +28,7 @@ public class TrailRendererWith2DCollider : MonoBehaviour {
     private LinkedList<Vector3> centerPositions;    //the previous positions of the object this script is attached to
     private LinkedList<Vertex> leftVertices;        //the left vertices derived from the center positions
     private LinkedList<Vertex> rightVertices;       //the right vertices derived from the center positions
+
 	public Stack<GameObject> lines;
 	private GameObject trail;
  
@@ -110,7 +111,12 @@ public class TrailRendererWith2DCollider : MonoBehaviour {
 			GetComponent<Transform>().position = new Vector3 (mousePos.x, mousePos.y, GetComponent<Transform>().position.z);			 
 		}
 		if (Input.GetMouseButtonUp(0)) {
-			lines.Push(trail.gameObject);
+			if(trail.GetComponent<PolygonCollider2D>().points.Length > 6){
+				lines.Push(trail.gameObject);
+			}
+			else{
+				Destroy(trail.gameObject);
+			}
 			makeNewTrail();
 		}
         if (!pausing) {
