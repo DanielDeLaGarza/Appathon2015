@@ -8,7 +8,6 @@ public class Enemy : MonoBehaviour
 	public float moveSpeed = 2f, applyDamageRadius = 1, detectionRange = 10;
 
 	protected Animator animator;
-	private bool inRange = false;
 	private int direction = 1;
 
 	// Use this for initialization
@@ -45,7 +44,6 @@ public class Enemy : MonoBehaviour
 
 	void Die ()
 	{
-		this.gameObject.SetActive (false);
 		Destroy (this.gameObject);
 	}
 

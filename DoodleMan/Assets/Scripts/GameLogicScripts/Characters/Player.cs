@@ -17,20 +17,17 @@ public class Player : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		DontDestroyOnLoad(transform.gameObject);
 		animator = GetComponent<Animator> ();
 	}
 
 	void Update ()
 	{
 		if(nextUsage > 0) nextUsage = nextUsage - Time.deltaTime;
-		moveAcelerometer();
+		moveKeys();
 	}
 
 	void Die ()
-	{
-		this.gameObject.SetActive (false);
-		Destroy (this.gameObject);
+	{	
 		Application.LoadLevel (Application.loadedLevel);
 	}
 
@@ -69,29 +66,38 @@ public class Player : MonoBehaviour
 			transform.localScale = inverseScale;
 			animator.SetBool("isRunning", true);
 		}
-		if (Input.GetKeyUp(KeyCode.LeftArrow)) {
-			left = false;
-			animator.SetBool("isRunning", false);
-		}
-		
-		if (Input.GetKeyDown(KeyCode.RightArrow)) {
+		if (Input.GetKeyDown(KeyCode.RightArrow)){
 			right = true;
 			Vector3 scaleNormal = transform.localScale;
 			if(scaleNormal.x < 0)scaleNormal.x *= -1;
 			transform.localScale = scaleNormal;
 			animator.SetBool("isRunning", true);
 		}
-		if (Input.GetKeyUp(KeyCode.RightArrow)) {
+		if (Input.GetKeyDown(KeyCode.UpArrow)) {
+			up = true;
+		}
+
+		if (Input.GetKeyUp(KeyCode.LeftArrow)&&!Input.GetKeyDown(KeyCode.RightArrow)){
+			left = false;
+			animator.SetBool("isRunning", false);
+		}
+		if (Input.GetKeyUp(KeyCode.RightArrow)&&!Input.GetKeyDown(KeyCode.LeftArrow)) {
 			right = false;
 			animator.SetBool("isRunning", false);
 		}
+		if (Input.GetKeyUp(KeyCode.UpArrow)) {
+			up = false;
+		}
 		if (left){
-			GetComponent<Rigidbody2D>().velocity = new Vector2(-2f, GetComponent<Rigidbody2D>().velocity.y);
+			GetComponent<Rigidbody2D>().velocity = new Vector2(-4.5f, GetComponent<Rigidbody2D>().velocity.y);
 		}
 		if (right){
-			GetComponent<Rigidbody2D>().velocity = new Vector2(2f, GetComponent<Rigidbody2D>().velocity.y);
+			GetComponent<Rigidbody2D>().velocity = new Vector2(4.5f, GetComponent<Rigidbody2D>().velocity.y);
 		}
-		if (!(left || right)) {
+		if (up) {
+			jump();
+		}
+		if (!(left |up| right)) {
 			GetComponent<Rigidbody2D>().velocity = new Vector2(0, GetComponent<Rigidbody2D>().velocity.y);
 		}
 	}
