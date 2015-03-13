@@ -7,7 +7,7 @@ public class LevelShit : MonoBehaviour {
 	
 	void OnTriggerEnter2D (Collider2D other)
 	{
-		if (other.name == "DoodleMan"){
+		if (other.gameObject.layer == 10){
 			Application.LoadLevel(level);
 		}
 	}

@@ -11,25 +11,25 @@ public class TrailRendererWith2DCollider : MonoBehaviour {
     //************
  
     public Material trailMaterial;                  //the material of the trail.  Changing this during runtime will have no effect.
-    public float lifeTime = 1.0f;                   //the amount of time in seconds that the trail lasts
+	public float bounciness;
+	public float friction;
+	public float lifeTime = 1.0f;                   //the amount of time in seconds that the trail lasts
     public float changeTime = 0.5f;                 //time point when the trail begins changing its width (if widthStart != widthEnd)
     public float widthStart = 1.0f;                 //the starting width of the trail
     public float widthEnd = 1.0f;                   //the ending width of the trail
     public float vertexDistanceMin = 0.10f;         //the minimum distance between the center positions
     public Vector3 renderDirection = new Vector3(0, 0, -1); //the direction that the mesh of the trail will be rendered towards
-    public bool colliderIsTrigger = true;           //determines if the collider is a trigger.  Changing this during runtime will have no effect.
+    //public bool colliderIsTrigger = true;           //determines if the collider is a trigger.  Changing this during runtime will have no effect.
     public bool colliderEnabled = true;             //determines if the collider is enabled.  Changing this during runtime will have no effect.
-    public bool pausing = false;                     //determines if the trail is pausing, i.e. neither creating nor destroying vertices
+    public bool pausing = false;                    //determines if the trail is pausing, i.e. neither creating nor destroying vertices
  
     private Transform trans;                        //transform of the object this script is attached to                    
-    private Mesh mesh;                              
+    private Mesh mesh;
     private new PolygonCollider2D collider;
- 
     private LinkedList<Vector3> centerPositions;    //the previous positions of the object this script is attached to
     private LinkedList<Vertex> leftVertices;        //the left vertices derived from the center positions
     private LinkedList<Vertex> rightVertices;       //the right vertices derived from the center positions
-
-	public Stack<GameObject> lines;
+	private Stack<GameObject> lines;
 	private GameObject trail;
  
     //************
@@ -50,7 +50,6 @@ public class TrailRendererWith2DCollider : MonoBehaviour {
     /// Changes if the collider is a trigger or not during runtime.
     /// </summary>
     public void ChangeColliderTrigger(bool isTrigger) {
-        colliderIsTrigger = isTrigger;
         collider.isTrigger = isTrigger;
     }
  
@@ -79,17 +78,24 @@ public class TrailRendererWith2DCollider : MonoBehaviour {
 	private void makeNewTrail(){
 		//create an object and mesh for the trail
 		trail = new GameObject("Trail", new[] { typeof(MeshRenderer), typeof(MeshFilter), typeof(PolygonCollider2D) } );
+		trail.layer = 11;
 		mesh = trail.GetComponent<MeshFilter>().mesh = new Mesh();
 		trail.GetComponent<Renderer>().material = trailMaterial;
+
 		Rigidbody2D gameObjectsRigidBody = trail.AddComponent<Rigidbody2D>();
 		gameObjectsRigidBody.gravityScale = 0f;
 		gameObjectsRigidBody.mass = .5f;
-		
+
 		//get and set the polygon collider on this trail.
 		collider = trail.GetComponent<PolygonCollider2D>();
-		collider.isTrigger = colliderIsTrigger;
+		collider.isTrigger = true;
 		collider.SetPath(0, null);
-		
+
+		PhysicsMaterial2D physicsMaterial = new PhysicsMaterial2D ();
+		physicsMaterial.bounciness = this.bounciness;
+		physicsMaterial.friction = this.friction;
+		collider.sharedMaterial = physicsMaterial;
+
 		//get the transform of the object this script is attatched to
 		trans = base.transform;
 		
@@ -104,12 +110,25 @@ public class TrailRendererWith2DCollider : MonoBehaviour {
 	public void deleteLine(){
 		if (lines.Count > 0) {
 			GameObject toBeDeleted = lines.Pop ();
+			toBeDeleted.GetComponent<Collider2D>().isTrigger = true;
+			Vector3 pos = toBeDeleted.transform.position;
+			pos = new Vector3(pos.x, pos.y + 99999, pos.z);
 			Destroy (toBeDeleted, 0f);
 		}
 	}
 	
 	private void Update() {
 		if (Input.GetMouseButton (0)) {
+
+			if(collider.isTrigger && trail.GetComponent<PolygonCollider2D>().points.Length > 4){
+				if(collider.IsTouchingLayers (3<<9)){
+					Destroy(trail);
+					makeNewTrail();
+				}
+				else{
+					collider.isTrigger = false;
+				}
+			}
 			Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 			GetComponent<Transform>().position = new Vector3 (mousePos.x, mousePos.y, GetComponent<Transform>().position.z);	 
 		}
@@ -117,7 +136,7 @@ public class TrailRendererWith2DCollider : MonoBehaviour {
 			if(trail.GetComponent<PolygonCollider2D>().points.Length > 6){
 				Rigidbody2D rBody = trail.GetComponent<Rigidbody2D>();
 				rBody.mass = rBody.mass*trail.GetComponent<PolygonCollider2D>().points.Length;
-				rBody.gravityScale = 1f;
+				rBody.gravityScale = 1.5f;
 				lines.Push(trail.gameObject);
 			}
 			else{
@@ -127,7 +146,7 @@ public class TrailRendererWith2DCollider : MonoBehaviour {
 		}
         if (!pausing) {
             //set the mesh and adjust widths if vertices were added or removed
-            if (TryAddVertices() | TryRemoveVertices() ) {
+            if (TryAddVertices()) {
  
                 if (widthStart != widthEnd) {
                     SetVertexWidths();
@@ -171,31 +190,6 @@ public class TrailRendererWith2DCollider : MonoBehaviour {
         }
  
         return vertsAdded;
-    }
- 
-    /// <summary>
-    /// Removes any pair of vertices (left + right) that have been alive longer than the specified lifespan.
-    /// If a pair of vertices have been removed, this method returns true.
-    /// </summary>
-    private bool TryRemoveVertices() {
-        bool vertsRemoved = false;
-        LinkedListNode<Vertex> leftVertNode = leftVertices.Last;
- 
-        //continue looking at the last left vertex 1) while one exists and 2) while the last left vertex is older than its lifeTime
-        while (leftVertNode != null && leftVertNode.Value.TimeAlive > lifeTime) {
-            //remove the left vertex from the collection
-            leftVertices.RemoveLast();
-            leftVertNode = leftVertices.Last;
- 
-            //remove its partnered right vertex from the collection since they were created at the same time.
-            rightVertices.RemoveLast();
- 
-            //remove the center position that the two vertices were derived from
-            centerPositions.RemoveLast();
-            vertsRemoved = true;
-        }
- 
-        return vertsRemoved;
     }
  
     /// <summary>
